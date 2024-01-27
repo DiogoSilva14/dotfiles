@@ -3,14 +3,12 @@ require("dps.remap")
 require("dps.lazy_init")
 require("dps.harpoon")
 
---vim.api.nvim_create_autocmd('LspAttach', {
---    group = vim.api.nvim_create_augroup('dps', {}),
---    callback = function(e)
---        local opts = { buffer = e.buf }
---    end,
---})
-
-require 'lspconfig'.lua_ls.setup{}
-require 'lspconfig'.clangd.setup{}
-require 'lspconfig'.pylyzer.setup{}
-require 'lspconfig'.rust_analyzer.setup{}
+-- Highlight trailing WS
+vim.cmd [[syn on]]
+local ag = vim.api.nvim_create_augroup('show_whitespace', { clear = true })
+vim.api.nvim_create_autocmd('Syntax', {
+    pattern = '*',
+    command = [[syntax match TrailingWS /\v\s\ze\s*$/ containedin=ALL]],
+    group = ag,
+})
+vim.cmd [[highlight TrailingWS ctermbg=203 ctermfg=203 guibg=IndianRed1 guifg=IndianRed1]]
