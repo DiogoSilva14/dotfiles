@@ -26,4 +26,5 @@ return {
     "eandrju/cellular-automaton.nvim",
     "laytan/cloak.nvim",
     "ThePrimeagen/harpoon",
+    "ojroques/nvim-osc52",
 }
